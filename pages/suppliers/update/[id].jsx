@@ -42,7 +42,7 @@ export default function Supplier({ supplier }) {
         alert("Error: " + result.error)
     } else {
         alert("Suppliers updated")
-        window.location.href = "https://stock-final-6213934.vercel.app/api/suppliers"
+        window.location.href = "https://stock-final-6213934.vercel.app/suppliers"
     }
     console.log(result)
     setData(JSON.stringify(data))
@@ -54,7 +54,7 @@ export default function Supplier({ supplier }) {
   if (!supplier) return (
     <div>
       <p>Record not found</p>
-      <Link href="https://stock-final-6213934.vercel.app/api/suppliers">Back</Link>
+      <Link href="https://stock-final-6213934.vercel.app/suppliers">Back</Link>
       </div>
   ); 
 
