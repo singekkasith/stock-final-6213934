@@ -1,12 +1,22 @@
 import { useState } from "react";
+import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import NavBar from '@/components/navbar';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Image from 'next/image'
 
-export default function AddBlogPage() {
+
+
+
+export default function AddSupplierPage() {
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
 
-    const saveBlog = async (data) => {
-        const response = await fetch('/api/blogs/articles', {
+    const saveRecord = async (data) => {
+        const response = await fetch('/api/suppliers/records', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -23,32 +33,124 @@ export default function AddBlogPage() {
         if (result.error){
             alert("Error: " + result.error)
         } else {
-            alert("Blog saved")
-            window.location.href = "/blogs"
+            alert("Supplier saved")
+            window.location.href = "/suppliers"
         }
         console.log(result)
         setData(JSON.stringify(data))
     }
 
-    return (
-        <div style={{margin: '1rem'}}>
-            <form onSubmit={handleSubmit(saveBlog)}>
-                <h1>New Blog</h1>
-                <label htmlFor="title">Title</label><br />
-                <input id="title" {...register("title", { required: true })} placeholder="Blog Title" /> <br />
+    return ( 
+        <>
 
-                <label htmlFor="catagory">Category</label>
-                <select id="catagory" {...register("catagory", { required: true })}>
-                    <option value="">Select...</option>
-                    <option value="News">News</option>
-                    <option value="Life">Life</option>
-                </select><br />
-                <label htmlFor="content">Content</label><br />
-                <textarea id="text" {...register("content")} placeholder="Content" /> <br />
+        <div style={{
+            zIndex: -10,
+            position: 'fixed',
+            height: '100vh',
+            width: '100vw'
+        }}>
+            <Image
+                src="/addBg.webp"
+                alt="Nice Background"
+                layout="fill"
+                objectFit='cover'
+            ></Image>
+        </div>
+
+        <NavBar />
+
+        <div style={{
+            margin: 'auto',
+            height: '12vh',
+            width: '100vw',
+            backgroundColor: "#191825"
+        }} class="border-bottom  border-white">
+            <br /><h2 style={{color: "#B46060", textAlign: "center"}}><b>Create Supplier Record</b></h2><br />
+        </div>
+        
+        <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '100vw',
+            backgroundColor: "rgba(0,0,0,0.7)",
+        
+        }}>
+            <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '90vw',
+            
+        
+        }}>
+                <Form onSubmit={handleSubmit(saveRecord)}>
+                    
+                <br />
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label htmlFor="name" style={{color: "#D27685"}} ><i><h5>Supplier</h5></i></Form.Label><br />
+                        <Form.Control id="name" {...register("name", { required: true })} placeholder="Supplier Name"/> 
+                        <Form.Text className="text-muted">
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label htmlFor="address" style={{color: "#D27685"}} ><i><h5>Address</h5></i></Form.Label>
+                        <Form.Control as="textarea" rows={3} textarea id="address" {...register("address")} placeholder="Address"  />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label htmlFor="phone" style={{color: "#D27685"}} ><i><h5>Phone</h5></i></Form.Label><br />
+                        <Form.Control id="phone" {...register("phone", { required: true })} placeholder="Phone"/> 
+                        <Form.Text className="text-muted">
+                        </Form.Text>
+                    </Form.Group>
+                    
+                    <div className="d-grid gap-2"> 
+                        <Button variant="success" size="lg" type="submit"> C R E A T E</Button>
+                        <p>{data}</p><br />
+                    </div>
+                </Form>
+            </div>
+        </div>
+        </>
+    );       
+
+    //const rootElement = document.getElementById("root");
+    //ReactDOM.render(<App />, rootElement);
+
+    /*Old Form
+        <form onSubmit={handleSubmit(saveRecord)}>
+                <h1>New Supplier Record</h1>
+                <label htmlFor="name">Supplier</label><br />
+                <input id="name" {...register("name", { required: true })} placeholder="Supplier Name" /> <br />
+
+                <label htmlFor="address">Address</label><br />
+                <textarea id="text" {...register("address")} placeholder="Address" /> <br />
+
+                <label htmlFor="phone">Phone</label><br />
+                <input id="phone" {...register("phone", { required: true })} placeholder="Phone" /> <br />
+
                 <input type="submit" />
                 <p>{data}</p><br />
             </form>
+    */
+
+    /* Bootstrap
+        <div style={{margin: '1rem'}}>
+            
+            <Form onSubmit={handleSubmit(saveRecord)}>
+                <h1>New Supplier Record</h1>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label htmlFor="name">Supplier</Form.Label><br />
+                    <Form.Control id="name" {...register("name", { required: true })} placeholder="Supplier Name"/> <br />
+                    <Form.Text className="text-muted">
+                    </Form.Text>
+                </Form.Group>
+                
+                <Button variant="danger" type="submit"> S A V E</Button>
+                <p>{data}</p><br />
+            </Form>
         
         </div>
-    );       
+    */
 }

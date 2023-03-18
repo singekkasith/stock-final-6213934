@@ -8,20 +8,25 @@ import Head from "next/head"
 import Link from "next/link"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import NavBar from '@/components/navbar';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Image from 'next/image'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Blog({ blog }) {
+export default function Supplier({ supplier }) {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState("");
 
   /*
   useEffect(() => {
-    resizeTo(blog)
+    resizeTo(supplier)
   }, [])
 
   */
 
-  const updateBlog = async (data) => {
-    const response = await fetch(`/api/blogs/articles/${blog._id}`, {
+  const updateSupplier = async (data) => {
+    const response = await fetch(`/api/suppliers/records/${supplier._id}`, {
         method: "PUT", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -38,8 +43,8 @@ export default function Blog({ blog }) {
     if (result.error){
         alert("Error: " + result.error)
     } else {
-        alert("Blog updated")
-        window.location.href = "/blogs"
+        alert("Suppliers updated")
+        window.location.href = "/suppliers"
     }
     console.log(result)
     setData(JSON.stringify(data))
@@ -47,46 +52,91 @@ export default function Blog({ blog }) {
 
 
   
-  console.log('blog 2', blog)
-  if (!blog) return (
+  console.log('supplier 2', supplier)
+  if (!supplier) return (
     <div>
-      <p>Blog not found</p>
-      <Link href="/blogs">Back</Link>
+      <p>Record not found</p>
+      <Link href="/suppliers">Back</Link>
       </div>
   ); 
 
   return (
     <>
       <Head>
-        <title>Update {blog.title}</title>
+        <title>Update {supplier.name}</title>
       </Head>
 
-      <div style={{margin: '1rem'}}>
-            <form onSubmit={handleSubmit(updateBlog)}>
-                <h1>Update Blog</h1>
-                <label htmlFor="title">Title</label><br />
-                <input id="title" {...register("title", { required: true })} 
-                placeholder="Blog Title"
-                defaultValue={blog.title} 
-                /><br />
+      <div style={{
+            zIndex: -10,
+            position: 'fixed',
+            height: '100vh',
+            width: '100vw'
+        }}>
+            <Image
+                src="/addBg.webp"
+                alt="Nice Background"
+                layout="fill"
+                objectFit='cover'
+            ></Image>
+        </div>
 
-                <label htmlFor="catagory">Category</label>
-                <select id="catagory" {...register("catagory", { required: true })}>
-                    <option value="">Select...</option>
-                    <option value="News">News</option>
-                    <option value="Life">Life</option>
-                </select><br />
-                <label htmlFor="content">Content</label><br />
-                <textarea id="text" {...register("content")} 
-                placeholder="Content"
-                defaultValue={blog.content} 
-                /><br />
-                <input type="submit"/>
-                <p>{data}</p><br />
-            </form>
+        <NavBar />
+
+        <div style={{
+            margin: 'auto',
+            height: '12vh',
+            width: '100vw',
+            backgroundColor: "#191825"
+        }} class="border-bottom  border-white">
+            <br /><h2 style={{color: "#B46060", textAlign: "center"}}><b>Update Supplier Record</b></h2><br />
+        </div>
+        
+        <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '100vw',
+            backgroundColor: "rgba(0,0,0,0.7)",
+        
+        }}>
+            <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '90vw',
+            
+        
+        }}>
+      
+            <Form onSubmit={handleSubmit(updateSupplier)}>
+                 <br />
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label htmlFor="name" style={{color: "#D27685"}} ><i><h5>Supplier</h5></i></Form.Label><br />
+              <Form.Control id="name" {...register("name", { required: true })} placeholder="Supplier Name" defaultValue={supplier.name}  /> 
+              <Form.Text className="text-muted">
+              </Form.Text>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Label htmlFor="address" style={{color: "#D27685"}} ><i><h5>Address</h5></i></Form.Label>
+              <Form.Control as="textarea" rows={3} textarea id="address" {...register("address")} placeholder="Address" defaultValue={supplier.address}  />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label htmlFor="phone" style={{color: "#D27685"}} ><i><h5>Phone</h5></i></Form.Label><br />
+              <Form.Control id="phone" {...register("phone", { required: true })} placeholder="Phone" defaultValue={supplier.phone}/> 
+              <Form.Text className="text-muted">
+              </Form.Text>
+              </Form.Group>
+
+              <div className="d-grid gap-2"> 
+                  <Button variant="warning" size="lg" type="submit"> S A V E</Button>
+                  <p>{data}</p><br />
+              </div>
+            </Form>
+
+            <Button variant="secondary" href="/suppliers" >Back </Button>
+     
+            </div>
       </div>
-
-      <Link href="/blogs">Back</Link>
     </>
   )
 }
@@ -94,8 +144,9 @@ export default function Blog({ blog }) {
 // STEP 1: This function will be executed at the server before loading the page.
 export async function getServerSideProps({ params }) {
   console.debug('params', params)
-  const res = await fetch(`/api/blogs/articles/${params.id}`)
-  const blog = await res.json()
-  console.debug('blog 1', blog)
-  return { props: { blog } }
+  const res = await fetch(`http://localhost:3000/api/suppliers/records/${params.id}`)
+  const supplier = await res.json()
+  console.debug('supplier 1', supplier)
+  return { props: { supplier } }
 }
+

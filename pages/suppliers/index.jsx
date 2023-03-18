@@ -1,15 +1,19 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react'
+import NavBar from '@/components/navbar';
+import Button from 'react-bootstrap/Button';
+import Image from 'next/image'
+import Table from 'react-bootstrap/Table';
 
 
-
-export default function Home({ blogs }) {
+export default function Home({ suppliers }) {
 
 
 
   function deleteBlog(id) {
-    fetch(`/api/blogs/articles/${id}`,
+    fetch(`/api/suppliers/records/${id}`,
       {
         method: 'DELETE'
       })
@@ -23,61 +27,119 @@ export default function Home({ blogs }) {
 
   return (
     <>
-      <Head>
-        <title>Blogs</title>
-      </Head>
-      <h1>Blogs</h1>
-      <p style={{ margin: '0.4rem' }}>
-        <Link href="/blogs/add">+New Blog</Link>
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th style={{width: '20rem'}}>Title</th>
-            <th style={{width: '10rem'}}>Category</th>
-            <th style={{width: '10rem'}}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            blogs.map(blog => {
-              return (
-                <tr key={blog._id}>
-                  <td>
-                    <Link href={`/blogs/${blog._id}`}>
-                      {blog.title}
-                    </Link>
-                  </td>
-                  <td style={{textAlign:'center'}}>{blog.category}</td>
-                  <td>
-                    
-                      <>
-                        <Link href={`/blogs/update/${blog._id}`}>Update</Link>
-                        &nbsp;&nbsp;&nbsp;
-                        <button onClick={() => deleteBlog(blog._id)}>Delete</button>
-                      </>
-                
-                  </td>
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-      <hr/>
-      <Link href="/">Home</Link>
-      <p>
-      </p>
 
+        <div style={{
+            zIndex: -10,
+            position: 'fixed',
+            height: '100vh',
+            width: '100vw'
+        }}>
+            <Image
+                src="/mainBg.webp"
+                alt="Nice Background"
+                layout="fill"
+                objectFit='cover'
+            ></Image>
+        </div>
+    
+      <Head>
+        <title>Supplier Records</title>
+      </Head>
+      
+      <NavBar />
+
+      <div style={{
+            margin: 'auto',
+            height: '12vh',
+            width: '90vw',
+            backgroundColor: "#4D4D4D"
+        }}>
+            <br /><h2 style={{color: "#B46060", textAlign: "center"}}><b>Supplier Records</b></h2><br />
+      </div>
+
+      <div style={{
+            margin: 'auto',
+            height: '0.5vh',
+            width: '90vw',
+            backgroundColor: "#B46060"
+        }} >
+         
+      </div>
+
+      
+      <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '90vw',
+            backgroundColor: "rgba(0,0,0,0.7)",
+        
+        }}>
+        <br />
+        <Button variant="success" size="sl" style={{ marginLeft: '70rem' }} href="/suppliers/add"> +Add New Supplier </Button>
+        <br />
+        
+        <Table striped bordered hover variant="dark">
+          <thead>
+          <br />
+            <tr>
+              <th style={{width: '10rem', textAlign: "center"} }>Supplier</th>
+              <th style={{width: '15rem', textAlign: "center"}}>Address</th>
+              <th style={{width: '5rem', textAlign: "center"}}>Phone</th>
+              <th style={{width: '8rem', textAlign: "center"}}>Update Record</th>
+              <th style={{width: '8rem', textAlign: "center"}}>Delete Record</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+              suppliers.map(supplier => {
+                return ( 
+                    <tr key={supplier._id}>
+
+                      <td style={{textAlign:'center'}}>
+                        <Link href={`/suppliers/${supplier._id}`}>
+                          {supplier.name}
+                        </Link>
+                      </td>
+
+                      <td style={{textAlign:'center'}}>{supplier.address}</td>
+
+                      <td style={{textAlign:'center'}}>{supplier.phone}</td>
+
+                      <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Image
+                                alt=""
+                                src="/edit.ico"
+                                width="15"
+                                height="15"
+                                className="d-inline-block align-top"
+                            />{' '}
+                            <Link href={`/suppliers/update/${supplier._id}`}>Update</Link> 
+                      </td>
+                      <td style={{textAllign: 'center'}}>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <Button variant="danger"  onClick={() => deleteBlog(supplier._id)}>Delete</Button></td>
+
+                    </tr>
+                )
+              })
+            }
+          </tbody>
+        </Table>
+
+      <hr/>
+      </div>
     </>
-  )
+    
+  );
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`/api/blogs/articles/`)
-  const blogs = await res.json()
+  const res = await fetch(`http://localhost:3000/api/suppliers/records/`)
+  const suppliers = await res.json()
   // console.debug('blog 1', blogs)
-  return { props: { blogs } }
+  return { props: { suppliers } }
 }
 
 

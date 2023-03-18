@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const articleSchema = new mongoose.Schema(
   {
-    title: String,
-    content: String,
-    category: String,
+    name: String,
+    address: String,
+    phone: String,
   },
   { strict: false }
 );
