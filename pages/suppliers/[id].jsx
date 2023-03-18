@@ -14,7 +14,7 @@ export default function Supplier({ supplier }) {
   if (!supplier) return (
     <div>
       <p>Record not found</p>
-      <Link href="/suppliers">Back</Link>
+      <Link href="https://stock-final-6213934.vercel.app/api/suppliers">Back</Link>
       </div>
   );
 
@@ -78,7 +78,7 @@ export default function Supplier({ supplier }) {
 
           <div>
             <br />
-          <Button variant="secondary" href="/suppliers" >Back </Button>
+          <Button variant="secondary" href="https://stock-final-6213934.vercel.app/api/suppliers" >Back </Button>
           </div>
             
         </div>        

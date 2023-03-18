@@ -34,7 +34,7 @@ export default function AddSupplierPage() {
             alert("Error: " + result.error)
         } else {
             alert("Supplier saved")
-            window.location.href = "/suppliers"
+            window.location.href = "https://stock-final-6213934.vercel.app/api/suppliers"
         }
         console.log(result)
         setData(JSON.stringify(data))

@@ -1,13 +1,11 @@
-/* 
-Update Page
-It populates the blog data into the form
 
-*/
 
 import Head from "next/head"
 import Link from "next/link"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+
 import NavBar from '@/components/navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -18,12 +16,12 @@ export default function Supplier({ supplier }) {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState("");
 
-  /*
+  
   useEffect(() => {
     resizeTo(supplier)
   }, [])
 
-  */
+  
 
   const updateSupplier = async (data) => {
     const response = await fetch(`https://stock-final-6213934.vercel.app/api/suppliers/articles/${supplier._id}`, {
@@ -44,7 +42,7 @@ export default function Supplier({ supplier }) {
         alert("Error: " + result.error)
     } else {
         alert("Suppliers updated")
-        window.location.href = "/suppliers"
+        window.location.href = "https://stock-final-6213934.vercel.app/api/suppliers"
     }
     console.log(result)
     setData(JSON.stringify(data))
@@ -56,7 +54,7 @@ export default function Supplier({ supplier }) {
   if (!supplier) return (
     <div>
       <p>Record not found</p>
-      <Link href="/suppliers">Back</Link>
+      <Link href="https://stock-final-6213934.vercel.app/api/suppliers">Back</Link>
       </div>
   ); 
 
@@ -133,7 +131,7 @@ export default function Supplier({ supplier }) {
               </div>
             </Form>
 
-            <Button variant="secondary" href="/suppliers" >Back </Button>
+            <Button variant="secondary" href="https://stock-final-6213934.vercel.app/api/suppliers" >Back </Button>
      
             </div>
       </div>

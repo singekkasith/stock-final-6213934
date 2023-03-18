@@ -76,6 +76,7 @@ export default function Home({ suppliers }) {
         
         }}>
 
+        <h1> Ekkasith S. 6213934</h1>
         <br />
 
         <Button variant="success" size="sl" style={{ marginLeft: '1rem' }} href="/suppliers/add"> +Add New Supplier </Button>
