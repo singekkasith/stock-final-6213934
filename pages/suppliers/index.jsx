@@ -64,7 +64,15 @@ export default function Home({ suppliers }) {
             width: '90vw',
             backgroundColor: "#B46060"
         }} >
-         
+      </div>
+
+      <div style={{
+            margin: 'auto',
+            height: '2vh',
+            width: '90vw',
+            backgroundColor: "#B867070"
+        }} >
+          <br /><h5 style={{color: "#D5B4B4", textAlign: "center"}}>Ekkasith S. 6213934</h5><br />
       </div>
 
       
@@ -76,7 +84,7 @@ export default function Home({ suppliers }) {
         
         }}>
 
-        <h1> Ekkasith S. 6213934</h1>
+        
         <br />
 
         <Button variant="success" size="sl" style={{ marginLeft: '1rem' }} href="/suppliers/add"> +Add New Supplier </Button>
