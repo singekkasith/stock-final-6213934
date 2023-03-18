@@ -6,6 +6,7 @@ import NavBar from '@/components/navbar';
 import Button from 'react-bootstrap/Button';
 import Image from 'next/image'
 import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
 
 
 export default function Home({ suppliers }) {
@@ -27,6 +28,9 @@ export default function Home({ suppliers }) {
 
   return (
     <>
+        <Head>
+          <title>Supplier Records</title>
+        </Head>
 
         <div style={{
             zIndex: -10,
@@ -42,10 +46,6 @@ export default function Home({ suppliers }) {
             ></Image>
         </div>
     
-      <Head>
-        <title>Supplier Records</title>
-      </Head>
-      
       <NavBar />
 
       <div style={{
@@ -54,7 +54,7 @@ export default function Home({ suppliers }) {
             width: '90vw',
             backgroundColor: "#4D4D4D"
         }}>
-            <br /><h2 style={{color: "#B46060", textAlign: "center"}}><b>Supplier Records</b></h2><br />
+            <br /><h2 style={{color: "#B46060", textAlign: "center"}}><b>Supplier Records Management</b></h2><br />
       </div>
 
       <div style={{
@@ -74,13 +74,15 @@ export default function Home({ suppliers }) {
             backgroundColor: "rgba(0,0,0,0.7)",
         
         }}>
+
         <br />
-        <Button variant="success" size="sl" style={{ marginLeft: '70rem' }} href="/suppliers/add"> +Add New Supplier </Button>
+
+        <Button variant="success" size="sl" style={{ marginLeft: '1rem' }} href="/suppliers/add"> +Add New Supplier </Button>
+        
         <br />
         
         <Table striped bordered hover variant="dark">
           <thead>
-          <br />
             <tr>
               <th style={{width: '10rem', textAlign: "center"} }>Supplier</th>
               <th style={{width: '15rem', textAlign: "center"}}>Address</th>
@@ -117,7 +119,8 @@ export default function Home({ suppliers }) {
                             />{' '}
                             <Link href={`/suppliers/update/${supplier._id}`}>Update</Link> 
                       </td>
-                      <td style={{textAllign: 'center'}}>
+
+                      <td>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <Button variant="danger"  onClick={() => deleteBlog(supplier._id)}>Delete</Button></td>
 

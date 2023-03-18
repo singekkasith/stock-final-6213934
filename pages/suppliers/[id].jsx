@@ -1,6 +1,12 @@
 import Head from "next/head"
 import Link from "next/link"
 
+import NavBar from '@/components/navbar';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Image from 'next/image'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Step 2: This component is rendered from the server (Server-Side Rendering) SSR
 export default function Supplier({ supplier }) {
@@ -18,9 +24,67 @@ export default function Supplier({ supplier }) {
         <title>{supplier.name}</title>
       </Head>
 
-      <h1>{supplier.name}</h1>
-      <p>{supplier.address}</p>
-      <Link href="/suppliers">Back</Link>
+      <Head>
+        <title>Update {supplier.name}</title>
+      </Head>
+
+      <div style={{
+            zIndex: -10,
+            position: 'fixed',
+            height: '100vh',
+            width: '100vw'
+        }}>
+            <Image
+                src="/addBg.webp"
+                alt="Nice Background"
+                layout="fill"
+                objectFit='cover'
+            ></Image>
+        </div>
+
+        <NavBar />
+
+        <div style={{
+            margin: 'auto',
+            height: '12vh',
+            width: '100vw',
+            backgroundColor: "#191825"
+        }} class="border-bottom  border-white">
+            <br /><h2 style={{color: "#B46060", textAlign: "center"}}><b>{supplier.name} Record</b></h2><br />
+        </div>
+        
+        <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '100vw',
+            backgroundColor: "rgba(0,0,0,0.7)",
+        
+        }}>
+            <div style={{
+            margin: 'auto',
+            height: '100vh',
+            width: '90vw',
+            
+            
+        
+        }}>
+            <br />
+            <h3 style={{color: "#66347F"}} >Address</h3>
+            <h6 style={{color: "#9E4784"}} >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{supplier.address}</h6>
+
+            <br />
+            <h3 style={{color: "#66347F"}} >Phone</h3>
+            <h6 style={{color: "#9E4784"}} >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{supplier.phone}</h6>
+
+          <div>
+            <br />
+          <Button variant="secondary" href="/suppliers" >Back </Button>
+          </div>
+            
+        </div>        
+     
+      </div>
+      
     </>
   )
 }
