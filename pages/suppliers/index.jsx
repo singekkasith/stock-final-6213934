@@ -15,7 +15,7 @@ export default function Home({ suppliers }) {
 
 
   function deleteBlog(id) {
-    fetch(`https://stock-final-6213934.vercel.app/api/suppliers/records/${id}`,
+    fetch(`https://stock-final-6213934.vercel.app/api/suppliers/articles/${id}`,
       {
         method: 'DELETE'
       })
@@ -140,7 +140,7 @@ export default function Home({ suppliers }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`https://stock-final-6213934.vercel.app/api/suppliers/records`)
+  const res = await fetch(`https://stock-final-6213934.vercel.app/api/suppliers/articles`)
   const suppliers = await res.json()
   // console.debug('blog 1', blogs)
   return { props: { suppliers } }
