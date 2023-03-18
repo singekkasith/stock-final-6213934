@@ -16,7 +16,6 @@ export default function Blog({ blog }) {
       <Head>
         <title>{blog.title}</title>
       </Head>
-
       <h1>{blog.title}</h1>
       <p>{blog.content}</p>
       <Link href="/blogs">Back</Link>
@@ -27,7 +26,7 @@ export default function Blog({ blog }) {
 // STEP 1: This function will be executed at the server before loading the page.
 export async function getServerSideProps({ params }) {
   console.debug('params', params)
-  const res = await fetch(`/api/blogs/articles/${params.id}`)
+  const res = await fetch(`http://localhost:3000/api/blogs/articles/${params.id}`)
   const blog = await res.json()
   console.debug('blog 1', blog)
   return { props: { blog } }
