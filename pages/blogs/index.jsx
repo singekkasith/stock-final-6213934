@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
+//import { useSession, signIn, signOut } from "next-auth/react"
 
 
 export default function Home({ blogs }) {
