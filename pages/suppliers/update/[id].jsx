@@ -16,11 +16,11 @@ export default function Supplier({ supplier }) {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState("");
 
-  
+  /*
   useEffect(() => {
     resizeTo(supplier)
   }, [])
-
+  */
   
 
   const updateSupplier = async (data) => {
