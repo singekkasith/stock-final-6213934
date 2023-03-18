@@ -26,7 +26,7 @@ export default function Supplier({ supplier }) {
   */
 
   const updateSupplier = async (data) => {
-    const response = await fetch(`/api/suppliers/records/${supplier._id}`, {
+    const response = await fetch(`https://stock-final-6213934.vercel.app/api/suppliers/records/${supplier._id}`, {
         method: "PUT", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

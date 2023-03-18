@@ -15,7 +15,7 @@ export default function Home({ suppliers }) {
 
 
   function deleteBlog(id) {
-    fetch(`/api/suppliers/records/${id}`,
+    fetch(`https://stock-final-6213934.vercel.app/api/suppliers/records/${id}`,
       {
         method: 'DELETE'
       })
