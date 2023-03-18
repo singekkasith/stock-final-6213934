@@ -131,7 +131,7 @@ export default function Supplier({ supplier }) {
               </div>
             </Form>
 
-            <Button variant="secondary" href="https://stock-final-6213934.vercel.app/api/suppliers" >Back </Button>
+            <Button variant="secondary" href="https://stock-final-6213934.vercel.app/suppliers" >Back </Button>
      
             </div>
       </div>
