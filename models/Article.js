@@ -9,4 +9,4 @@ const articleSchema = new mongoose.Schema(
   { strict: false }
 );
 
-module.exports = mongoose.models.article || mongoose.model("article", articleSchema);
+module.exports = mongoose.models.suppliers || mongoose.model("records", articleSchema);
