@@ -114,43 +114,4 @@ export default function AddSupplierPage() {
         </>
     );       
 
-    //const rootElement = document.getElementById("root");
-    //ReactDOM.render(<App />, rootElement);
-
-    /*Old Form
-        <form onSubmit={handleSubmit(saveRecord)}>
-                <h1>New Supplier Record</h1>
-                <label htmlFor="name">Supplier</label><br />
-                <input id="name" {...register("name", { required: true })} placeholder="Supplier Name" /> <br />
-
-                <label htmlFor="address">Address</label><br />
-                <textarea id="text" {...register("address")} placeholder="Address" /> <br />
-
-                <label htmlFor="phone">Phone</label><br />
-                <input id="phone" {...register("phone", { required: true })} placeholder="Phone" /> <br />
-
-                <input type="submit" />
-                <p>{data}</p><br />
-            </form>
-    */
-
-    /* Bootstrap
-        <div style={{margin: '1rem'}}>
-            
-            <Form onSubmit={handleSubmit(saveRecord)}>
-                <h1>New Supplier Record</h1>
-
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label htmlFor="name">Supplier</Form.Label><br />
-                    <Form.Control id="name" {...register("name", { required: true })} placeholder="Supplier Name"/> <br />
-                    <Form.Text className="text-muted">
-                    </Form.Text>
-                </Form.Group>
-                
-                <Button variant="danger" type="submit"> S A V E</Button>
-                <p>{data}</p><br />
-            </Form>
-        
-        </div>
-    */
 }

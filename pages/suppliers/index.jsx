@@ -139,7 +139,7 @@ export default function Home({ suppliers }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/suppliers/records/`)
+  const res = await fetch(`/api/suppliers/records/`)
   const suppliers = await res.json()
   // console.debug('blog 1', blogs)
   return { props: { suppliers } }
