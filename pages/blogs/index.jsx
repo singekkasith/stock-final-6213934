@@ -74,7 +74,7 @@ export default function Home({ blogs }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/blogs/articles/`)
+  const res = await fetch(`/api/blogs/articles/`)
   const blogs = await res.json()
   // console.debug('blog 1', blogs)
   return { props: { blogs } }
